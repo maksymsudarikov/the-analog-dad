@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Analog Dad</title>
+
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* CSS Tokens & Base Styles */
+        :root {
+            /* Typography: System Sans + Inter backup */
+            --font-body: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            --font-display: var(--font-body);
+            /* Using same sans stack for headings per PRD recommendation for "human feel" */
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+            --text: #111;
+            --muted: rgba(0, 0, 0, .58);
+            --muted2: rgba(0, 0, 0, .44);
+            --hairline: rgba(0, 0, 0, .10);
+
+            --bg: #fbfaf7;
+            /* warm paper */
+            --focus: rgba(17, 17, 17, .28);
+            /* neutral accessible focus */
+
+            --button-bg: #1C1917;
+            --button-text: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            line-height: 1.5;
+            background:
+                radial-gradient(900px 600px at 50% 35%, rgba(0, 0, 0, .035), transparent 60%),
+                var(--bg);
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        /* Typography Utilities */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            letter-spacing: -0.025em;
+            line-height: 1.05;
+        }
+
+        .brand {
+            font-family: var(--font-mono);
+            letter-spacing: .14em;
+            font-size: 12px;
+            color: var(--muted2);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .subhead {
+            color: var(--muted);
+            line-height: 1.45;
+            font-size: 18px;
+        }
+
+        .section-kicker,
+        .kicker {
+            font-family: var(--font-mono);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: var(--muted2);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 24px;
+            /* Mobile default */
+            width: 100%;
+        }
+
+        @media (min-width: 640px) {
+            .container {
+                padding: 0 32px;
+            }
+        }
+
+        .prose {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Section Rhythm */
+        .section {
+            padding: 64px 0;
+        }
+
+        .section--tight {
+            padding: 40px 0;
+        }
+
+        .section--divider {
+            border-top: 1px solid var(--hairline);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 72vh;
+            padding: 96px 0 56px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            max-width: 22ch;
+            margin: 0 auto;
+            font-size: 40px;
+            font-weight: 500;
+        }
+
+        .hero .subhead {
+            max-width: 52ch;
+            margin: 18px auto 0;
+        }
+
+        .hero .cta-wrap {
+            margin-top: 28px;
+        }
+
+        .scroll-cue {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 22px;
+            opacity: .55;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            padding: 16px 32px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: transform 0.1s ease, opacity 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .cta-note {
+            margin-top: 10px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* Start Here Cards */
+        .cards {
+            display: grid;
+            gap: 14px;
+        }
+
+        .card {
+            border: 1px solid var(--hairline);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .55);
+            transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-1px);
+            border-color: rgba(0, 0, 0, .18);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+        }
+
+        .card a {
+            display: flex;
+            /* Flex row for perfect alignment per PRD */
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px;
+            /* Consistent padding 24px */
+            border-radius: 16px;
+            color: inherit;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .card a:focus {
+            outline: none;
+        }
+
+        .card a:focus-visible {
+            box-shadow: 0 0 0 4px var(--focus);
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .card-meta {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: .10em;
+            text-transform: uppercase;
+            color: var(--muted2);
+        }
+
+        .card-title {
+            font-size: 18px;
+            line-height: 1.25;
+            font-weight: 600;
+        }
+
+        .card-arrow {
+            color: var(--muted2);
+            font-size: 18px;
+            margin-left: 16px;
+        }
+
+        /* What This Is / Isn't */
+        .twocol {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            /* 56px per PRD */
+            align-items: start;
+        }
+
+        .twocol h3 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0 0 14px;
+        }
+
+        .bullets {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .bullets li {
+            margin: 10px 0;
+            font-size: 15px;
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--muted2);
+        }
+
+        /* How It Works */
+        .steps {
+            display: grid;
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .step {
+            display: flex;
+            /* Flex row per PRD */
+            align-items: center;
+            /* Vertically centered */
+            gap: 16px;
+        }
+
+        .step-num {
+            width: 40px;
+            /* Fixed 40x40 per PRD */
+            height: 40px;
+            flex-shrink: 0;
+            border-radius: 999px;
+            border: 1px solid var(--hairline);
+            display: grid;
+            place-items: center;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            line-height: 1;
+            color: var(--muted2);
+            background: rgba(255, 255, 255, .45);
+        }
+
+        .step-text {
+            color: var(--text);
+            font-size: 16px;
+        }
+
+        .step-text span {
+            color: var(--muted);
+        }
+
+        /* Platform Integration */
+        .follow {
+            max-width: 100%;
+            /* Use container width */
+            text-align: left;
+        }
+
+        .follow-title {
+            font-family: var(--font-display);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin: 8px 0 6px;
+            font-size: 24px;
+        }
+
+        .follow-sub {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .follow-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .follow-item {
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            /* Fixed tag column 120px */
+            gap: 16px;
+            align-items: center;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid var(--hairline);
+            background: rgba(255, 255, 255, .45);
+            text-decoration: none;
+            color: inherit;
+            transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+        }
+
+        .follow-item:hover {
+            transform: translateY(-1px);
+            border-color: rgba(0, 0, 0, .18);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
+        }
+
+        .follow-item:focus {
+            outline: none;
+        }
+
+        .follow-item:focus-visible {
+            box-shadow: 0 0 0 4px var(--focus);
+        }
+
+        .follow-name {
+            font-family: var(--font-mono);
+            letter-spacing: .10em;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: var(--muted2);
+        }
+
+        .follow-desc {
+            color: var(--text);
+            line-height: 1.35;
+        }
+
+        .follow-arrow {
+            color: var(--muted2);
+            font-size: 18px;
+        }
+
+        .follow-note {
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 32px 0 40px;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid var(--hairline);
+        }
+
+        .footer-text {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .footer-sub {
+            font-size: 13px;
+            color: #A8A29E;
+        }
+
+        footer a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .twocol {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                /* Stack with clean gap */
+            }
+
+            .follow-item {
+                grid-template-columns: 1fr auto;
+                grid-template-rows: auto auto;
+            }
+
+            .follow-name {
+                grid-column: 1 / 2;
+                grid-row: 1 / 2;
+            }
+
+            .follow-desc {
+                grid-column: 1 / 2;
+                grid-row: 2 / 3;
+            }
+
+            .follow-arrow {
+                grid-column: 2 / 3;
+                grid-row: 1 / 3;
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                min-height: auto;
+                padding: 72px 0 40px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .section {
+                padding: 56px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="brand">THE ANALOG DAD</div>
+
+            <h1>Field notes for dads who want more presence, less doomscrolling.</h1>
+            <p class="subhead">Short experiments. Honest relapses. Real-world outings.</p>
+
+            <div class="cta-wrap">
+                <a class="btn-primary" href="#">Get weekly field notes</a>
+                <p class="cta-note">One email per week. No spam. Unsubscribe anytime.</p>
+            </div>
+
+            <a class="scroll-cue" href="#what">
+                <span>Start here</span>
+                <span aria-hidden="true">↓</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- 2. WHAT THIS IS (AND ISN’T) -->
+    <section class="section" id="what">
+        <div class="container">
+            <div class="kicker">WHAT THIS IS (AND ISN’T)</div>
+            <div class="twocol">
+                <div class="col">
+                    <h3>This is:</h3>
+                    <ul class="bullets">
+                        <li>A dad documenting the fight to be present.</li>
+                        <li>Short field notes + tiny experiments you can copy.</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h3>This isn't:</h3>
+                    <ul class="bullets">
+                        <li>Anti-tech preaching.</li>
+                        <li>Parenting advice.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. HOW IT WORKS -->
+    <section class="section section--tight section--divider">
+        <div class="container">
+            <div class="kicker">HOW IT WORKS</div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">Read a weekly note. <span>2 minutes.</span></div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">Try one rule. <span>One outing.</span></div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">Share a friction note. <span>Optional.</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. START HERE (Artifacts) -->
+    <section class="section" id="start">
+        <div class="container">
+            <div class="kicker" style="text-align:center;">START HERE</div>
+            <div class="cards">
+                <div class="card">
+                    <a href="#">
+                        <div class="card-content">
+                            <div class="card-meta">VIDEO • 90 SECONDS</div>
+                            <div class="card-title">Why I started documenting this</div>
+                        </div>
+                        <div class="card-arrow">→</div>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="#">
+                        <div class="card-content">
+                            <div class="card-meta">ESSAY</div>
+                            <div class="card-title">The phone-in-pocket experiment</div>
+                        </div>
+                        <div class="card-arrow">→</div>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="#">
+                        <div class="card-content">
+                            <div class="card-meta">RELAPSE REPORT</div>
+                            <div class="card-title">When I broke the streak at the playground</div>
+                        </div>
+                        <div class="card-arrow">→</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. WHERE TO FOLLOW -->
+    <section class="section section--tight" id="follow">
+        <div class="container">
+            <div class="follow">
+                <div class="kicker">WHERE TO FOLLOW</div>
+                <h2 class="follow-title">Pick your channel.</h2>
+                <p class="follow-sub">Same project. Different formats.</p>
+
+                <div class="follow-list">
+                    <a class="follow-item" href="#" target="_blank" rel="noopener">
+                        <span class="follow-name">Substack</span>
+                        <span class="follow-desc">Weekly field notes (2 minutes)</span>
+                        <span class="follow-arrow">→</span>
+                    </a>
+
+                    <a class="follow-item" href="#" target="_blank" rel="noopener">
+                        <span class="follow-name">Instagram</span>
+                        <span class="follow-desc">Short clips + moments (bookends)</span>
+                        <span class="follow-arrow">→</span>
+                    </a>
+
+                    <a class="follow-item" href="#" target="_blank" rel="noopener">
+                        <span class="follow-name">TikTok</span>
+                        <span class="follow-desc">Field notes in 30–60 seconds</span>
+                        <span class="follow-arrow">→</span>
+                    </a>
+
+                    <a class="follow-item" href="#" target="_blank" rel="noopener">
+                        <span class="follow-name">Telegram</span>
+                        <span class="follow-desc">Raw log + behind-the-scenes (optional)</span>
+                        <span class="follow-arrow">→</span>
+                    </a>
+                </div>
+
+                <p class="follow-note">Email is the cleanest version. Social is the noisy version.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. BOTTOM CTA -->
+    <section class="section section--tight section--divider" style="padding-bottom: 72px;">
+        <div class="container" style="text-align:center; max-width:760px;">
+            <h2 style="margin:0 0 10px;">Get the clean version.</h2>
+            <p class="subhead" style="margin:0 0 18px;">One weekly note. Two minutes. No spam.</p>
+            <a class="btn-primary" href="#">Get weekly field notes</a>
+            <p class="cta-note">Unsubscribe anytime.</p>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="text-center">
+        <div class="footer-text">Questions? <a href="mailto:hello@theanalogdad.com">hello@theanalogdad.com</a></div>
+        <div class="footer-sub">Based in Brooklyn. Built in public.</div>
+    </footer>
+
+</body>
+
+</html>
