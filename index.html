@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Analog Dad</title>
 
-    <!-- Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap"
-        rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📓</text></svg>">
+
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="Field notes for dads fighting for presence in a distracted world. Short experiments, honest relapses, real-world outings.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Analog Dad">
+    <meta property="og:description" content="Field notes for dads who want more presence, less doomscrolling.">
+    <meta property="og:url" content="https://theanalogdad.com">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@analog_dad_">
+    <meta name="twitter:title" content="The Analog Dad">
+    <meta name="twitter:description" content="Field notes for dads who want more presence, less doomscrolling.">
 
     <style>
         /* CSS Tokens & Base Styles */
@@ -422,6 +429,24 @@
             color: var(--muted);
         }
 
+        /* Bottom CTA */
+        .bottom-cta {
+            padding-bottom: 72px;
+        }
+
+        .bottom-cta .container {
+            text-align: center;
+            max-width: 760px;
+        }
+
+        .bottom-cta h2 {
+            margin: 0 0 10px;
+        }
+
+        .bottom-cta .subhead {
+            margin: 0 0 18px;
+        }
+
         /* Footer */
         footer {
             padding: 32px 0 40px;
@@ -504,7 +529,7 @@
             <p class="subhead">Short experiments. Honest relapses. Real-world outings.</p>
 
             <div class="cta-wrap">
-                <a class="btn-primary" href="#">Get weekly field notes</a>
+                <a class="btn-primary" href="https://theanalogdad.substack.com" target="_blank" rel="noopener">Get weekly field notes</a>
                 <p class="cta-note">One email per week. No spam. Unsubscribe anytime.</p>
             </div>
 
@@ -562,7 +587,7 @@
     <!-- 4. START HERE (Artifacts) -->
     <section class="section" id="start">
         <div class="container">
-            <div class="kicker" style="text-align:center;">START HERE</div>
+            <div class="kicker text-center">START HERE</div>
             <div class="cards">
                 <div class="card">
                     <a href="#">
@@ -606,27 +631,39 @@
                 <p class="follow-sub">Same project. Different formats.</p>
 
                 <div class="follow-list">
-                    <a class="follow-item" href="#" target="_blank" rel="noopener">
+                    <a class="follow-item" href="https://theanalogdad.substack.com" target="_blank" rel="noopener">
                         <span class="follow-name">Substack</span>
                         <span class="follow-desc">Weekly field notes (2 minutes)</span>
                         <span class="follow-arrow">→</span>
                     </a>
 
-                    <a class="follow-item" href="#" target="_blank" rel="noopener">
+                    <a class="follow-item" href="https://www.instagram.com/the_analog_dad?igsh=MTh3YzB6Y2doNGZudA%3D%3D" target="_blank" rel="noopener">
                         <span class="follow-name">Instagram</span>
                         <span class="follow-desc">Short clips + moments (bookends)</span>
                         <span class="follow-arrow">→</span>
                     </a>
 
-                    <a class="follow-item" href="#" target="_blank" rel="noopener">
+                    <a class="follow-item" href="https://www.tiktok.com/@theanalogdad?_r=1" target="_blank" rel="noopener">
                         <span class="follow-name">TikTok</span>
                         <span class="follow-desc">Field notes in 30–60 seconds</span>
                         <span class="follow-arrow">→</span>
                     </a>
 
-                    <a class="follow-item" href="#" target="_blank" rel="noopener">
+                    <a class="follow-item" href="https://www.youtube.com/@Analog_Dad" target="_blank" rel="noopener">
+                        <span class="follow-name">YouTube</span>
+                        <span class="follow-desc">Longer format videos</span>
+                        <span class="follow-arrow">→</span>
+                    </a>
+
+                    <a class="follow-item" href="https://t.me/theanalogdad" target="_blank" rel="noopener">
                         <span class="follow-name">Telegram</span>
                         <span class="follow-desc">Raw log + behind-the-scenes (optional)</span>
+                        <span class="follow-arrow">→</span>
+                    </a>
+
+                    <a class="follow-item" href="https://x.com/analog_dad_" target="_blank" rel="noopener">
+                        <span class="follow-name">X (Twitter)</span>
+                        <span class="follow-desc">Quick thoughts + updates</span>
                         <span class="follow-arrow">→</span>
                     </a>
                 </div>
@@ -636,17 +673,17 @@
         </div>
     </section>
 
-    <!-- 7. BOTTOM CTA -->
-    <section class="section section--tight section--divider" style="padding-bottom: 72px;">
-        <div class="container" style="text-align:center; max-width:760px;">
-            <h2 style="margin:0 0 10px;">Get the clean version.</h2>
-            <p class="subhead" style="margin:0 0 18px;">One weekly note. Two minutes. No spam.</p>
-            <a class="btn-primary" href="#">Get weekly field notes</a>
+    <!-- 6. BOTTOM CTA -->
+    <section class="section section--tight section--divider bottom-cta">
+        <div class="container">
+            <h2>Get the clean version.</h2>
+            <p class="subhead">One weekly note. Two minutes. No spam.</p>
+            <a class="btn-primary" href="https://theanalogdad.substack.com" target="_blank" rel="noopener">Get weekly field notes</a>
             <p class="cta-note">Unsubscribe anytime.</p>
         </div>
     </section>
 
-    <!-- 8. FOOTER -->
+    <!-- 7. FOOTER -->
     <footer class="text-center">
         <div class="footer-text">Questions? <a href="mailto:hello@theanalogdad.com">hello@theanalogdad.com</a></div>
         <div class="footer-sub">Based in Brooklyn. Built in public.</div>
