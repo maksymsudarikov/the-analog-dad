@@ -9,6 +9,11 @@
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📓</text></svg>">
 
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+
     <!-- SEO & Open Graph -->
     <meta name="description" content="Field notes for dads fighting for presence in a distracted world. Short experiments, honest relapses, real-world outings.">
     <meta property="og:type" content="website">
@@ -23,11 +28,10 @@
     <style>
         /* CSS Tokens & Base Styles */
         :root {
-            /* Typography: System Sans + Inter backup */
-            --font-body: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-            --font-display: var(--font-body);
-            /* Using same sans stack for headings per PRD recommendation for "human feel" */
-            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            /* Typography */
+            --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-display: "Space Grotesk", var(--font-body);
+            --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
             --text: #111;
             --muted: rgba(0, 0, 0, .58);
@@ -685,7 +689,7 @@
 
     <!-- 7. FOOTER -->
     <footer class="text-center">
-        <div class="footer-text">Questions? <a href="mailto:hello@theanalogdad.com">hello@theanalogdad.com</a></div>
+        <div class="footer-text">Questions? <a href="mailto:itstheanalogdad@gmail.com">itstheanalogdad@gmail.com</a></div>
         <div class="footer-sub">Based in Brooklyn. Built in public.</div>
     </footer>
 
