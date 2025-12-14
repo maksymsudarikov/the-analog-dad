@@ -20,7 +20,11 @@
     <meta property="og:title" content="The Analog Dad">
     <meta property="og:description" content="Field notes for dads who want more presence, less doomscrolling.">
     <meta property="og:url" content="https://theanalogdad.com">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://theanalogdad.com/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://theanalogdad.com/og-image.svg">
     <meta name="twitter:site" content="@analog_dad_">
     <meta name="twitter:title" content="The Analog Dad">
     <meta name="twitter:description" content="Field notes for dads who want more presence, less doomscrolling.">
@@ -433,6 +437,88 @@
             color: var(--muted);
         }
 
+        /* Subscribe Form */
+        .subscribe-form {
+            display: flex;
+            gap: 8px;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .subscribe-form input[type="email"] {
+            flex: 1;
+            padding: 16px 20px;
+            border: 1px solid var(--hairline);
+            border-radius: 6px;
+            font-size: 15px;
+            font-family: var(--font-body);
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .subscribe-form input[type="email"]::placeholder {
+            color: var(--muted2);
+        }
+
+        .subscribe-form input[type="email"]:focus {
+            outline: none;
+            border-color: var(--text);
+            box-shadow: 0 0 0 3px var(--focus);
+        }
+
+        .subscribe-form button {
+            padding: 16px 24px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: transform 0.1s ease, opacity 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .subscribe-form button:hover {
+            opacity: 0.9;
+        }
+
+        .subscribe-form button:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 480px) {
+            .subscribe-form {
+                flex-direction: column;
+            }
+
+            .subscribe-form button {
+                width: 100%;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger children animations */
+        .stagger-children .fade-in:nth-child(1) { transition-delay: 0s; }
+        .stagger-children .fade-in:nth-child(2) { transition-delay: 0.1s; }
+        .stagger-children .fade-in:nth-child(3) { transition-delay: 0.2s; }
+        .stagger-children .fade-in:nth-child(4) { transition-delay: 0.3s; }
+        .stagger-children .fade-in:nth-child(5) { transition-delay: 0.4s; }
+        .stagger-children .fade-in:nth-child(6) { transition-delay: 0.5s; }
+
         /* Bottom CTA */
         .bottom-cta {
             padding-bottom: 72px;
@@ -533,7 +619,10 @@
             <p class="subhead">Short experiments. Honest relapses. Real-world outings.</p>
 
             <div class="cta-wrap">
-                <a class="btn-primary" href="https://theanalogdad.substack.com" target="_blank" rel="noopener">Get weekly field notes</a>
+                <form class="subscribe-form" action="https://theanalogdad.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+                    <input type="email" name="email" placeholder="Your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
                 <p class="cta-note">One email per week. No spam. Unsubscribe anytime.</p>
             </div>
 
@@ -544,8 +633,8 @@
         </div>
     </section>
 
-    <!-- 2. WHAT THIS IS (AND ISN’T) -->
-    <section class="section" id="what">
+    <!-- 2. WHAT THIS IS (AND ISN'T) -->
+    <section class="section fade-in" id="what">
         <div class="container">
             <div class="kicker">WHAT THIS IS (AND ISN’T)</div>
             <div class="twocol">
@@ -568,7 +657,7 @@
     </section>
 
     <!-- 3. HOW IT WORKS -->
-    <section class="section section--tight section--divider">
+    <section class="section section--tight section--divider fade-in">
         <div class="container">
             <div class="kicker">HOW IT WORKS</div>
             <div class="steps">
@@ -589,7 +678,7 @@
     </section>
 
     <!-- 4. START HERE (Artifacts) -->
-    <section class="section" id="start">
+    <section class="section fade-in" id="start">
         <div class="container">
             <div class="kicker text-center">START HERE</div>
             <div class="cards">
@@ -627,7 +716,7 @@
     </section>
 
     <!-- 5. WHERE TO FOLLOW -->
-    <section class="section section--tight" id="follow">
+    <section class="section section--tight fade-in" id="follow">
         <div class="container">
             <div class="follow">
                 <div class="kicker">WHERE TO FOLLOW</div>
@@ -678,11 +767,14 @@
     </section>
 
     <!-- 6. BOTTOM CTA -->
-    <section class="section section--tight section--divider bottom-cta">
+    <section class="section section--tight section--divider bottom-cta fade-in">
         <div class="container">
             <h2>Get the clean version.</h2>
             <p class="subhead">One weekly note. Two minutes. No spam.</p>
-            <a class="btn-primary" href="https://theanalogdad.substack.com" target="_blank" rel="noopener">Get weekly field notes</a>
+            <form class="subscribe-form" action="https://theanalogdad.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+                <input type="email" name="email" placeholder="Your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
             <p class="cta-note">Unsubscribe anytime.</p>
         </div>
     </section>
@@ -692,6 +784,21 @@
         <div class="footer-text">Questions? <a href="mailto:itstheanalogdad@gmail.com">itstheanalogdad@gmail.com</a></div>
         <div class="footer-sub">Based in Brooklyn. Built in public.</div>
     </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        });
+    </script>
 
 </body>
 
