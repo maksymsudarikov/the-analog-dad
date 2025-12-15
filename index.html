@@ -537,6 +537,26 @@
             margin: 0 0 18px;
         }
 
+        /* About Section */
+        .about-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 24px;
+            display: block;
+            border: 3px solid var(--hairline);
+        }
+
+        .about-text {
+            max-width: 560px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
         /* Footer */
         footer {
             padding: 32px 0 40px;
@@ -633,7 +653,18 @@
         </div>
     </section>
 
-    <!-- 2. WHAT THIS IS (AND ISN'T) -->
+    <!-- 2. ABOUT -->
+    <section class="section fade-in" id="about">
+        <div class="container">
+            <div class="kicker text-center">WHO'S BEHIND THIS</div>
+            <img src="maksym-miro.png" alt="Maksym and Miro" class="about-photo">
+            <p class="about-text">
+                I'm Maksym, dad to Miro. He'd be in the middle of showing me something and I'd catch myself glancing at my phone. A notification. An email that could wait. It kept happening. And it kept getting harder to stop. This project is my attempt to change that. For my family first. Maybe it helps yours too.
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. WHAT THIS IS (AND ISN'T) -->
     <section class="section fade-in" id="what">
         <div class="container">
             <div class="kicker">WHAT THIS IS (AND ISN’T)</div>
@@ -750,12 +781,12 @@
 
                     <a class="follow-item" href="https://t.me/theanalogdad" target="_blank" rel="noopener">
                         <span class="follow-name">Telegram</span>
-                        <span class="follow-desc">Raw log + behind-the-scenes (optional)</span>
+                        <span class="follow-desc">Raw log + behind-the-scenes</span>
                         <span class="follow-arrow">→</span>
                     </a>
 
                     <a class="follow-item" href="https://x.com/analog_dad_" target="_blank" rel="noopener">
-                        <span class="follow-name">X (Twitter)</span>
+                        <span class="follow-name">X</span>
                         <span class="follow-desc">Quick thoughts + updates</span>
                         <span class="follow-arrow">→</span>
                     </a>
